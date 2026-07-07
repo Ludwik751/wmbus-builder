@@ -1,0 +1,40 @@
+esphome:
+  name: miernik-wody
+  friendly_name: Miernik Wody
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+wifi:
+  ssid: "Sportowa"
+  password: "lepimuse87"
+
+api:
+ota:
+  platform: esphome
+logger:
+
+time:
+  - platform: homeassistant
+    id: ha_time
+
+external_components:
+  - source: github://SzczepanLeon/esphome-components@version_3
+    refresh: 0s
+    components: [ wmbus ]
+
+wmbus:
+  mosi_pin: GPIO23
+  miso_pin: GPIO19
+  clk_pin: GPIO18
+  cs_pin: GPIO5
+  gdo0_pin: GPIO16
+  gdo2_pin: GPIO17
+
+sensor:
+  - platform: wmbus
+    meter_id: "00105237"
+    type: izar
+    name: "Zużycie wody"
