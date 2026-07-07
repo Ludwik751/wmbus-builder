@@ -1,0 +1,14 @@
+image: gitpod/workspace-docker
+
+ports:
+  - port: 6052
+    onOpen: open-browser
+    visibility: private
+
+tasks:
+  - name: Start ESPHome Dashboard
+    init: |
+      mkdir -p esphome && touch esphome/.gitkeep
+      docker compose pull
+    command: |
+      docker compose up -d
